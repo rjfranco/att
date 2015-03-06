@@ -40,7 +40,9 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    if (process.env.CHROME) {
+      ENV.APP.USE_SAFE_URLS = true;
+    }
   }
 
   return ENV;

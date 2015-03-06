@@ -7,14 +7,33 @@
     // Add login component to doc for timesheet
     timesheet_login = /timesheet\/?\??[a-zA-Z\\&\\=\\]*?$/i;
     if (timesheet_login.test(window.location.href)) {
-      assets_path = chrome.extension.getURL("assets/")
-      login_form = '<div class="login-form" data-component="login-form"></div>'
-      vendor_stylesheet = '<link rel="stylesheet" href="' + assets_path + '/vendor.css">'
-      att_stylesheet = '<link rel="stylesheet" href="' + assets_path + '/all-the-time.css">'
-      vendor_js = '<script src="' + assets_path + '/vendor.js"></script>'
-      att_js = '<script src="' + assets_path + '/all-the-time.js"></script>'
+      assets_path = chrome.extension.getURL("assets/");
 
-      $body.append([vendor_stylesheet, att_stylesheet, vendor_js, att_js].join(''));
+      // Add component to be displayed
+      $body.append('<div class="login-form" data-component="login-form"></div>');
+
+      // Has meta build data that is required
+      index_request = $.ajax({
+        url: chrome.extension.getURL('index.html'),
+        dataType: 'html',
+      });
+
+      // Prerequisite for other scripts
+      vendor_script_request = $.ajax({
+        url: assets_path + 'vendor.js',
+        dataType: 'script',
+        cache: true
+      });
+
+      $.when(index_request, vendor_script_request).then( function(index_request) {
+        html = $.parseHTML(index_request[0])
+        $('head').append(html[13]);
+
+        vendor_stylesheet = '<link rel="stylesheet" href="' + assets_path + 'vendor.css">';
+        att_stylesheet = '<link rel="stylesheet" href="' + assets_path + 'all-the-time.css">';
+        att_js = '<script src="' + assets_path + 'all-the-time.js"></script>';
+        $body.append([vendor_stylesheet, att_stylesheet, att_js].join(''));
+      });
     }
 
     // Turns on the pageAction icon via a message to background.js
