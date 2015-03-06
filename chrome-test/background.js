@@ -1,6 +1,5 @@
 chrome.runtime.onMessage.addListener(
   function(request, sender) {
-    console.log('For reals', arguments);
     if (request === "enabled") {
       chrome.pageAction.show(sender.tab.id);
       chrome.pageAction.setTitle({
@@ -33,7 +32,6 @@ chrome.runtime.onMessage.addListener(
 
 chrome.pageAction.onClicked.addListener(
   function(tab) {
-    console.log('Tabb listeninger');
     chrome.tabs.sendMessage(tab.id, "toggle");
   }
 );
