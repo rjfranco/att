@@ -5,7 +5,7 @@
     $body.addClass('att');
 
     // Add login component to doc for timesheet
-    timesheet_login = /timesheet\/?\??[a-zA-Z\\&\\=\\]*?$/i;
+    timesheet_login = /timesheet\/?\??[a-zA-Z\\&\\=\.]*?$/i;
     if (timesheet_login.test(window.location.href)) {
       assets_path = chrome.extension.getURL("assets/");
 
