@@ -20,7 +20,7 @@
         "https://timesheet/",
         "https://timesheet/Employee/AccountEmployeeTimeEntryPeriodView.aspx"
       ],
-      "js": ["start-up.js"],
+      "js": ["jquery.min.js", "start-up.js"],
       "css": ["loading.css"],
       "run_at": "document_end"
     }
