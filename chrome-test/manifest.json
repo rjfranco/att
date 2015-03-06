@@ -1,0 +1,37 @@
+{
+  "name": "All The Time",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "A tool for entering timesheet data into the proprietary system created by Cvent",
+  "homepage_url": "https://github.com/rjfranco/attx",
+  "icons": {
+    "16": "att-logo-16.png",
+    "19": "att-logo-19.png",
+    "38": "att-logo-38.png",
+    "48": "att-logo-48.png",
+    "128": "att-logo-128.png"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://timesheet/",
+        "https://timesheet/Employee/AccountEmployeeTimeEntryPeriodView.aspx"
+      ],
+      "js": ["start-up.js"],
+      "css": ["loading.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "page_action": {},
+  "permissions": [
+    "tabs"
+  ],
+  "web_accessible_resources": [
+    "index.html",
+    "assets/*",
+    "fonts/*"
+  ]
+}
