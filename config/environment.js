@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'all-the-time',
     environment: environment,
     baseURL: '/',
-    locationType: 'auto',
+    locationType: 'none',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -45,6 +45,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.locationType = 'none';
+
     if (process.env.CHROME) {
       ENV.APP.USE_SAFE_URLS = true;
     }
