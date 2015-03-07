@@ -1,6 +1,7 @@
 (function(enabled) {
+  $body = $('body')
+
   if (enabled) {
-    $body = $('body')
     // Adds att class to body for style purposes when active
     $body.addClass('att');
 
@@ -48,6 +49,8 @@
 
     chrome.runtime.sendMessage("enabled");
   } else {
+    $body.find('form').show()
+
     // Turns on the disabled icon via a message to background.js
     chrome.runtime.onMessage.addListener(
       function(request, sender) {

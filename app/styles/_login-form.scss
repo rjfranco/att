@@ -13,8 +13,16 @@
   form {
     background-color: #fff;
     height: auto;
-    width: 37rem;
     text-align: right;
+    width: 37rem;
+  }
+
+  .error {
+    background: #d00;
+    color: #fff;
+    font-size: 1.3rem;
+    padding: 1.3rem;
+    text-align: left;
   }
 
   ul {
@@ -34,7 +42,8 @@
     margin: 1.3rem;
   }
 
-  [type=text] {
+  [type=text],
+  [type=password] {
     border: .1rem solid #ddd;
     box-shadow: rgba(0, 0, 0, .10) 0 0 .6rem 0;
     font-size: 1.3rem;
@@ -43,7 +52,8 @@
     padding: .25rem .5rem;
     width: 100%;
 
-    &:active {
+    &:active,
+    &:focus {
       box-shadow: rgba(0, 0, 0, .20) 0 0 .6rem 0;
     }
   }
@@ -51,10 +61,16 @@
   [type=submit] {
     background: #28aae2;
     border: 0;
+    color: #fff;
     display: inline-block;
     font-size: 1.3rem;
     margin: 1rem 0 1.3rem;
+    outline: none;
     padding: .5rem 1rem;
     width: 100%;
+
+    &:active {
+      background: darken(#28aae2, 10%);
+    }
   }
 }

@@ -1,13 +1,16 @@
 <h1>CrowdCompass Timesheets</h1>
-<form>
+<form {{action "login" on="submit"}}>
+  {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}
   <ul>
     <li>
       <label for="username">Username</label>
       <input type="text" name="username" />
     </li>
     <li>
-      <label for="username">Password</label>
-      <input type="text" name="password" />
+      <label for="password">Password</label>
+      <input type="password" name="password" />
     </li>
   </ul>
 
