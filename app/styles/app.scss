@@ -3,6 +3,11 @@
 body {
   font-size: 100%;
   font-family: 'Montserrat', sans-serif;
+
+  // Turns the body back on ( off prior to loading to prevent weird switch)
+  & > form {
+    display: block;
+  }
 }
 
 @import 'login-form';

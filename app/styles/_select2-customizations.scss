@@ -1,0 +1,54 @@
+.select2-default {
+  span {
+    color: darkgrey;  
+  }
+}
+
+.select2-container {
+  .select2-choice {
+    background: #fff;
+    border: 0;
+    border-radius: 0;
+    height: 3rem;
+    text-align: left;
+
+    & > .select2-chosen {
+      font-size: 1.3rem;
+      font-family: Montserrat, sans-serif;
+      height: 100%;
+      line-height: 3rem;
+    }
+
+    .select2-arrow {
+      background: #f0f0f0;
+      border: 0;
+      border-radius: 0;
+      b {
+        background-position: 0 .75rem;
+      }
+    }
+  }
+}
+
+
+.select2-drop-active {
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+  padding: .5rem .25rem;
+}
+
+.select2-result-selectable,
+.select2-result-unselectable {
+  .select2-match {
+    color: #255f9d;
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+  }
+  &.select2-highlighted {
+    .select2-match {
+      color: #d1dff5;
+    }
+  }
+}

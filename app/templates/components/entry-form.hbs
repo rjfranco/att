@@ -1,2 +1,55 @@
-<h1>CrowdCompass Timesheets</h1>
-<h2>{{currentDateRange}}</h2>
+<header>
+  <h1>CrowdCompass Timesheets</h1>
+  <h2>{{currentDateRange}}</h2>
+</header>
+
+<form class="entry">
+  <input type="text" name="time" placeholder="H:MM" />
+
+  <select name="day">
+    <option></option>
+    <option value="mon">Monday</option>
+    <option value="tue">Tuesday</option>
+    <option value="wed">Wednesday</option>
+    <option value="thu">Thursday</option>
+    <option value="fri">Friday</option>
+    <option value="sat">Saturday</option>
+    <option value="sun">Sunday</option>
+  </select>
+
+  <select name="type">
+    <option></option>
+    {{#each group in availableOptions}}
+      <optgroup {{bind-attr label="group.label"}}>
+        {{#each option in group.options}}
+          <option {{bind-attr value="option.value"}}>{{option.name}}</option>
+        {{/each}}
+      </optgroup>
+    {{/each}}
+  </select>
+
+  <button type="submit">Add</button>
+</form>
+
+<section class="entries">
+  <ul>
+    {{#if entriesForMonday}}
+      <li>
+        <h3>Monday</h3>
+        <ul>
+          {{#each entry in entriesForMonday}}
+            <li>{{entry.hours}} - {{entry.name}}</li>
+          {{/each}}
+        </ul>
+      </li>
+    {{/if}}
+    <!--
+    <li>Tuesday</li>
+    <li>Wednesday</li>
+    <li>Thursday</li>
+    <li>Friday</li>
+    <li>Saturday</li>
+    <li>Sunday</li>
+    -->
+  </ul>
+</section>
