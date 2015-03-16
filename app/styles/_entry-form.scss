@@ -80,3 +80,46 @@
     }
   }
 }
+
+.entries {
+  margin: 3rem;
+
+  h3 {
+    border-bottom: .1rem solid lighten(#555, 25%);
+    color: #555;
+    margin: 2rem 1rem .5rem;
+    padding: 0 0 .25rem;
+  }
+
+  ul {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    color: #222;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.group-entries {
+  li {
+    margin: 0 1rem;
+    .delete {
+      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAMBJREFUSIntlFEKwyAQRB+9Q49WSsmt2kBzh96sV4hgP6oSzGw2CfEvA/7oMk/HVTi1UzcgHjRmugLfloCPKBqBJxAWjALQixo3mjHNA9wNSEhrAI+qxo3mVW2ihkzNswYFUNFYBhmi1jp1Aq9rLIhnHmF91yiIZx7BjmYLxDKPl4UdHabmEcG+S+7S8CBFW9o0G4UVkCIrqt4xUBD50EBHFfg/fyuCGmKeIEtFFYC3YT6tGUTNTM2/ayuqQwGnin5PaQ90VG9oTwAAAABJRU5ErkJggg==') no-repeat;
+      background-size: 1rem;
+      border: 0;
+      height: 1rem;
+      position: relative;
+      top: -.05rem;
+      transform: rotate(180deg);
+      width: 1rem;
+      &:hover {
+        opacity: .5;
+      }
+    }
+  }
+}

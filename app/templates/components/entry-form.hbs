@@ -37,9 +37,12 @@
       {{#each group in activityGroups}}
         <li>
           <h3>{{group.name}}</h3>
-          <ul>
+          <ul class="group-entries">
             {{#each entry in group.entries}}
-              <li>{{entry.hours}} - {{entry.name}}</li>
+              <li>
+                <button {{action "removeEntry" group entry}} class="delete"></button>
+                {{entry.hours}} - {{entry.name}}
+              </li>
             {{/each}}
           </ul>
         </li>

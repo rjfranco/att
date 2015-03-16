@@ -7,10 +7,11 @@ export default Ember.Component.extend({
         name: $('select[name=type]').select2('data').text,
         hours: $('input[name=time]').val(),
         day: $('select[name=day]').val(),
-        value: $('select[name=type]').select2('data').id
+        value: $('select[name=type]').select2('data').id,
+        id: this.generateEntryID()
       });
 
-      var activity_group = this.activityGroups.findBy('name', new_activity.get('day'))
+      var activity_group = this.activityGroups.findBy('name', new_activity.get('day'));
       if (activity_group) {
         activity_group.entries.addObject(new_activity);
       } else {
@@ -24,6 +25,15 @@ export default Ember.Component.extend({
 
       this.clearFormFields();
       this.focusTime();
+    },
+
+    removeEntry: function(group, entry) {
+      group.get('entries').removeObject(entry);
+
+      // Remove the group if it's the last entry
+      if(!group.get('entries.length')) {
+        this.activityGroups.removeObject(group);
+      }
     }
   },
 
@@ -35,6 +45,7 @@ export default Ember.Component.extend({
     $('select:first-of-type').select2({
       placeholder: 'Weekday'
     });
+
     $('select:nth-of-type(2)').select2({
       placeholder: 'Type of Work'
     });
@@ -69,6 +80,17 @@ export default Ember.Component.extend({
     };
 
     return key_table[day];
+  },
+
+  generateEntryID: function() {
+    var text = '';
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 5; i++ ) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+
+    return text;
   },
 
   // I would love a better way to do this ...
