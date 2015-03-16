@@ -1,6 +1,15 @@
 # All-the-time
 
-This project takes the standard ui from the timesheet entry application for cvent employees and transforms it into something useable.
+This project takes the standard ui from the timesheet entry application for cvent employees and transforms it into something more appealing to use. Very much still a work in progress.
+
+## Todo's
+
+* Ability to navigate sheets
+* Default to previous week's sheet unless you've navigated that week
+* Add submit button (initially non-functional so we can add a bit of local-storage logic...)
+* Save entry sets on submit
+* Add ability to restore prior week entries
+* Finally - Fill out form based on active entry set on submit
 
 ## Prerequisites
 
@@ -23,19 +32,9 @@ Otherwise, the intent of this is simply to produce a chrome extension, which wil
 
 ## Running / Development
 
-* `ember server`
-* add the chrome-dev/ directory as an extension to your chrome
+* `ember build -w`
+* add the chrome-test/ directory as an extension to your chrome
 * visit timesheet/ in your browser, refresh as necessary
-* when adding new features, please start by adding a related test first.
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
-
-* `ember test`
-* `ember test --server`
 
 ### Building
 
