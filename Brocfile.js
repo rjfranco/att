@@ -8,6 +8,7 @@ app.import('bower_components/select2/select2.js');
 app.import('bower_components/select2/select2.css');
 app.import('bower_components/select2/select2.png', {destDir: 'assets'});
 app.import('bower_components/select2/select2x2.png', {destDir: 'assets'});
+app.import('bower_components/select2/select2-spinner.gif', {destDir: 'assets'});
 
 // Use `app.import` to add additional libraries to the generated
 // output files.

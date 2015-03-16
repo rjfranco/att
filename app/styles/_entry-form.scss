@@ -73,7 +73,9 @@
     padding: .5rem 1rem;
     width: 6rem;
 
-    &:active {
+    &:active,
+    &:focus,
+    &:hover {
       background: darken(#28aae2, 10%);
     }
   }

@@ -1,3 +1,5 @@
+/* global chrome */
+
 function startEmberApp (component, $body) {
   // get assets_path ...
   var assets_path = chrome.extension.getURL("assets/");
@@ -18,7 +20,7 @@ function startEmberApp (component, $body) {
   $body.append(`<div class="${component}" data-component="${component}"></div>`);
 
   $.when(index_request, vendor_script_request).then( function(index_request) {
-    var html = $.parseHTML(index_request[0])
+    var html = $.parseHTML(index_request[0]);
     $('head').append(html[13]);
 
     var vendor_stylesheet = `<link rel="stylesheet" href="${assets_path}vendor.css">`;
@@ -29,22 +31,20 @@ function startEmberApp (component, $body) {
 }
 
 (function(enabled) {
-  $body = $('body')
+  var $body = $('body');
 
   if (enabled) {
     // Adds att class to body for style purposes when active
     $body.addClass('att');
 
-    // Add timesheet login component
-    var timesheet_login = /timesheet\/?\??[a-zA-Z\\&\\=\.]*?$/i;
-    if (timesheet_login.test(window.location.href)) {
-      startEmberApp('login-form', $body)
-    }
-
     // Add timesheet entry component
     var timesheet_entry = /AccountEmployeeTimeEntryPeriodView.aspx$/;
     if (timesheet_entry.test(window.location.href)) {
-      startEmberApp('entry-form', $body)
+      startEmberApp('entry-form', $body);
+
+    // Add timesheet login component
+    } else {
+      startEmberApp('login-form', $body);
     }
 
     // Turns on the pageAction icon via a message to background.js
@@ -59,7 +59,7 @@ function startEmberApp (component, $body) {
 
     chrome.runtime.sendMessage("enabled");
   } else {
-    $body.find('form').show()
+    $body.find('form').show();
 
     // Turns on the disabled icon via a message to background.js
     chrome.runtime.onMessage.addListener(

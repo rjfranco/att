@@ -3,18 +3,18 @@
   <h2>{{currentDateRange}}</h2>
 </header>
 
-<form class="entry">
+<form class="entry" {{action "addNewActivity" on="submit"}}>
   <input type="text" name="time" placeholder="H:MM" />
 
   <select name="day">
     <option></option>
-    <option value="mon">Monday</option>
-    <option value="tue">Tuesday</option>
-    <option value="wed">Wednesday</option>
-    <option value="thu">Thursday</option>
-    <option value="fri">Friday</option>
-    <option value="sat">Saturday</option>
-    <option value="sun">Sunday</option>
+    <option value="Monday">Monday</option>
+    <option value="Tuesday">Tuesday</option>
+    <option value="Wednesday">Wednesday</option>
+    <option value="Thursday">Thursday</option>
+    <option value="Friday">Friday</option>
+    <option value="Saturday">Saturday</option>
+    <option value="Sunday">Sunday</option>
   </select>
 
   <select name="type">
@@ -31,25 +31,19 @@
   <button type="submit">Add</button>
 </form>
 
-<section class="entries">
-  <ul>
-    {{#if entriesForMonday}}
-      <li>
-        <h3>Monday</h3>
-        <ul>
-          {{#each entry in entriesForMonday}}
-            <li>{{entry.hours}} - {{entry.name}}</li>
-          {{/each}}
-        </ul>
-      </li>
-    {{/if}}
-    <!--
-    <li>Tuesday</li>
-    <li>Wednesday</li>
-    <li>Thursday</li>
-    <li>Friday</li>
-    <li>Saturday</li>
-    <li>Sunday</li>
-    -->
-  </ul>
-</section>
+{{#if activityGroups}}
+  <section class="entries">
+    <ul>
+      {{#each group in activityGroups}}
+        <li>
+          <h3>{{group.name}}</h3>
+          <ul>
+            {{#each entry in group.entries}}
+              <li>{{entry.hours}} - {{entry.name}}</li>
+            {{/each}}
+          </ul>
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+{{/if}}
