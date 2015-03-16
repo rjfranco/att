@@ -10,6 +10,7 @@ This project takes the standard ui from the timesheet entry application for cven
 * Save entry sets on submit
 * Add ability to restore prior week entries
 * Finally - Fill out form based on active entry set on submit
+* Create mechanize or phantomjs script to parse available options for updates.
 
 ## Prerequisites
 
