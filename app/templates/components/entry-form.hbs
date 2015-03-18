@@ -31,22 +31,37 @@
   <button type="submit">Add</button>
 </form>
 
-{{#if activityGroups}}
-  <section class="entries">
-    <ul>
-      {{#each group in activityGroups}}
-        <li>
-          <h3>{{group.name}}</h3>
-          <ul class="group-entries">
-            {{#each entry in group.entries}}
-              <li>
-                <button {{action "removeEntry" group entry}} class="delete"></button>
-                {{entry.hours}} - {{entry.name}}
-              </li>
-            {{/each}}
-          </ul>
-        </li>
-      {{/each}}
-    </ul>
-  </section>
-{{/if}}
+{{! Friends don't let friends skip leg days. }}
+<div class="lower-body">
+  {{#if hasActions}}
+    <section class="actions">
+      {{#if canSubmit}}
+        <button {{action "submitNewTimesheet"}}>Submit Timesheet</button>
+      {{/if}}
+
+      {{#if previousEntries}}
+
+      {{/if}}
+    </section>
+  {{/if}}
+
+  {{#if activityGroups}}
+    <section class="entries">
+      <ul>
+        {{#each group in activityGroups}}
+          <li>
+            <h3>{{group.name}}</h3>
+            <ul class="group-entries">
+              {{#each entry in group.entries}}
+                <li>
+                  <button {{action "removeEntry" group entry}} class="delete"></button>
+                  {{entry.hours}} - {{entry.name}}
+                </li>
+              {{/each}}
+            </ul>
+          </li>
+        {{/each}}
+      </ul>
+    </section>
+  {{/if}}
+</div>

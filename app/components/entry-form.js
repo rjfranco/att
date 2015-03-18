@@ -93,6 +93,18 @@ export default Ember.Component.extend({
     return text;
   },
 
+  canSubmit: function() {
+    return this.get('activityGroups.length') && !this.get('submitted');
+  }.property('activityGroups.length'),
+
+  submitted: function() {
+    return $('#C_C_H1_C_W_lblTimesheetStatus').text() !== 'Not Submitted';
+  }.property(),
+
+  hasActions: function() {
+    return this.get('canSubmit') || this.get('previousEntries');
+  }.property('canSubmit,previousEntries'),
+
   // I would love a better way to do this ...
   availableOptions:  [
     {
