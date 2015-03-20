@@ -34,6 +34,10 @@ export default Ember.Component.extend({
       if(!group.get('entries.length')) {
         this.activityGroups.removeObject(group);
       }
+    },
+
+    submitNewTimesheet: function() {
+      debugger
     }
   },
 
