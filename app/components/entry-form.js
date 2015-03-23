@@ -37,13 +37,23 @@ export default Ember.Component.extend({
     },
 
     submitNewTimesheet: function() {
-      debugger
+      this.saveTimesheet();
     }
   },
 
   activityGroups: Ember.ArrayController.create({
     sort: ['sort_key']
   }),
+
+  willInsertElement: function() {
+    localforage.getItem('timesheets').then( function(timesheets) {
+      if (timesheets) {
+        this.set('timesheets', timesheets);
+      } else {
+        this.set('timesheets', []);
+      }
+    }.bind(this));
+  },
 
   didInsertElement: function() {
     $('select:first-of-type').select2({
@@ -53,6 +63,18 @@ export default Ember.Component.extend({
     $('select:nth-of-type(2)').select2({
       placeholder: 'Type of Work'
     });
+  },
+
+  saveTimesheet: function() {
+    if (this.get('timesheets').length > 7) {
+      this.get('timesheets').splice(0,1);
+    }
+
+    var new_timesheet = this.activityGroups.toJSON();
+
+    this.get('timesheets').push(new_timesheet);
+
+    localforage.setItem('timesheets', this.get('timesheets'));
   },
 
   currentDateRange: function() {

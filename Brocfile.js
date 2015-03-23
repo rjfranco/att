@@ -14,6 +14,9 @@ app.import('bower_components/select2/select2-spinner.gif', {destDir: 'assets'});
 // Open Iconic Components
 app.import('bower_components/open-iconic/sprite/open-iconic.min.svg', {destDir: 'assets'});
 
+// LocalForage
+app.import('bower_components/localforage/dist/localforage.js');
+
 // Use `app.import` to add additional libraries to the generated
 // output files.
 //
