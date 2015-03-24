@@ -7,6 +7,7 @@
   </h2>
 </header>
 
+{{#if canSubmit}}
 <form class="entry" {{action "addNewActivity" on="submit"}}>
   <input type="text" name="time" placeholder="H:MM" />
 
@@ -34,6 +35,7 @@
 
   <button type="submit">Add</button>
 </form>
+{{/if}}
 
 {{! Friends don't let friends skip leg days. }}
 <div class="lower-body">
