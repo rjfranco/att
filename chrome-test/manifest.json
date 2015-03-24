@@ -28,6 +28,7 @@
   ],
   "page_action": {},
   "permissions": [
+    "storage",
     "tabs"
   ],
   "web_accessible_resources": [

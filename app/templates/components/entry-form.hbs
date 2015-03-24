@@ -36,11 +36,16 @@
   {{#if hasActions}}
     <section class="actions">
       {{#if canSubmit}}
-        <button {{action "submitNewTimesheet"}}>Submit Timesheet</button>
+        <button {{action "submitNewTimesheet"}} class="submit-timesheet">Submit Timesheet</button>
       {{/if}}
 
-      {{#if previousEntries}}
-
+      {{#if previousTimesheets}}
+        <h4>Older Timesheets</h4>
+        <ul>
+          {{#each timesheet in previousTimesheets}}
+            <li {{action "restoreOlderTimesheet" timesheet}}>{{timesheet.name}}</li>
+          {{/each}}
+        </ul>
       {{/if}}
     </section>
   {{/if}}

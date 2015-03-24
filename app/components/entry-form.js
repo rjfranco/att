@@ -11,17 +11,7 @@ export default Ember.Component.extend({
         id: this.generateEntryID()
       });
 
-      var activity_group = this.activityGroups.findBy('name', new_activity.get('day'));
-      if (activity_group) {
-        activity_group.entries.addObject(new_activity);
-      } else {
-        var new_group = Ember.Object.create({
-          name: new_activity.get('day'),
-          sort_key: this.sortKeyFor(new_activity.get('day')),
-          entries: [new_activity]
-        });
-        this.activityGroups.addObject(new_group);
-      }
+      this.addActivity(new_activity);
 
       this.clearFormFields();
       this.focusTime();
@@ -38,6 +28,14 @@ export default Ember.Component.extend({
 
     submitNewTimesheet: function() {
       this.saveTimesheet();
+    },
+
+    restoreOlderTimesheet: function(timesheet) {
+      timesheet.entries.forEach( function(entry) {
+        var new_activity = Ember.Object.create(entry);
+
+        this.addActivity(new_activity);
+      }.bind(this));
     }
   },
 
@@ -46,13 +44,13 @@ export default Ember.Component.extend({
   }),
 
   willInsertElement: function() {
-    localforage.getItem('timesheets').then( function(timesheets) {
-      if (timesheets) {
-        this.set('timesheets', timesheets);
-      } else {
-        this.set('timesheets', []);
-      }
-    }.bind(this));
+    var timesheet_string = localStorage.getItem('timesheets');
+
+    if (timesheet_string) {
+      this.set('timesheets', JSON.parse(timesheet_string));
+    } else {
+      this.set('timesheets', []);
+    }
   },
 
   didInsertElement: function() {
@@ -70,11 +68,22 @@ export default Ember.Component.extend({
       this.get('timesheets').splice(0,1);
     }
 
-    var new_timesheet = this.activityGroups.toJSON();
+    var weekly_entries = this.activityGroups.toJSON().mapBy('entries');
+    var entries = [];
+    entries = entries.concat.apply(entries, weekly_entries);
 
-    this.get('timesheets').push(new_timesheet);
+    var new_timesheet = {
+      name: this.get('currentDateRange'),
+      entries: entries
+    };
 
-    localforage.setItem('timesheets', this.get('timesheets'));
+    this.timesheets.addObject(new_timesheet);
+
+    var timesheets_string = JSON.stringify(this.timesheets);
+
+    localStorage.setItem('timesheets', timesheets_string);
+
+    $('.submit-timesheet').trigger('blur');
   },
 
   currentDateRange: function() {
@@ -93,6 +102,26 @@ export default Ember.Component.extend({
   focusTime: function() {
     $('input[name=time]').focus();
   },
+
+  addActivity: function(new_activity) {
+    var activity_group = this.activityGroups.findBy('name', new_activity.get('day'));
+
+    if (activity_group) {
+      activity_group.entries.addObject(new_activity);
+    } else {
+      var new_group = Ember.Object.create({
+        name: new_activity.get('day'),
+        sort_key: this.sortKeyFor(new_activity.get('day')),
+        entries: [new_activity]
+      });
+
+      this.activityGroups.addObject(new_group);
+    }
+  },
+
+  previousTimesheets: function() {
+    return this.get('timesheets');
+  }.property('timesheets'),
 
   sortKeyFor: function(day) {
     var key_table = {
@@ -128,8 +157,8 @@ export default Ember.Component.extend({
   }.property(),
 
   hasActions: function() {
-    return this.get('canSubmit') || this.get('previousEntries');
-  }.property('canSubmit,previousEntries'),
+    return this.get('canSubmit') || this.get('previousTimesheets');
+  }.property('canSubmit,previousTimesheets'),
 
   // I would love a better way to do this ...
   availableOptions:  [
