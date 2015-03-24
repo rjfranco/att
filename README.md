@@ -5,7 +5,6 @@ This project takes the standard ui from the timesheet entry application for cven
 ## Todo's
 
 * When on a week that has data, restore that week's entries.
-* Default to previous week's sheet unless you've navigated that week
 * Finally - Fill out form based on active entry set on submit
 * Create mechanize or phantomjs script to parse available options for updates.
 

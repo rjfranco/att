@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
+export default Ember.Component.extend( Ember.TargetActionSupport, {
   actions: {
     addNewActivity: function () {
       var new_activity = Ember.Object.create({
@@ -52,6 +52,25 @@ export default Ember.Component.extend({
   }),
 
   willInsertElement: function() {
+    this.defaultToWeekPrior();
+    this.restorePreviousTimesheets();
+  },
+
+  didInsertElement: function() {
+    this.applySelect2();
+  },
+
+  defaultToWeekPrior: function() {
+    var start_date_param = /StartDate\=/i;
+    if (!start_date_param.test(window.location.href)) {
+      this.triggerAction({
+        action: 'goToPreviousWeek',
+        target: this
+      });
+    }
+  },
+
+  restorePreviousTimesheets: function() {
     var timesheet_string = localStorage.getItem('timesheets');
 
     if (timesheet_string) {
@@ -61,7 +80,7 @@ export default Ember.Component.extend({
     }
   },
 
-  didInsertElement: function() {
+  applySelect2: function() {
     $('select:first-of-type').select2({
       placeholder: 'Weekday'
     });
