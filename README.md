@@ -6,9 +6,6 @@ This project takes the standard ui from the timesheet entry application for cven
 
 * Ability to navigate sheets
 * Default to previous week's sheet unless you've navigated that week
-* Add submit button (initially non-functional so we can add a bit of local-storage logic...)
-* Save entry sets on submit
-* Add ability to restore prior week entries
 * Finally - Fill out form based on active entry set on submit
 * Create mechanize or phantomjs script to parse available options for updates.
 
