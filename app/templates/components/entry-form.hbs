@@ -63,7 +63,9 @@
             <ul class="group-entries">
               {{#each entry in group.entries}}
                 <li>
-                  <button {{action "removeEntry" group entry}} class="delete"></button>
+                  {{#if canSubmit}}
+                    <button {{action "removeEntry" group entry}} class="delete"></button>
+                  {{/if}}
                   {{entry.hours}} - {{entry.name}}
                 </li>
               {{/each}}
