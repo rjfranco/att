@@ -18,8 +18,8 @@
     {
       "matches": [
         "https://timesheet/",
-        "https://timesheet/Default.aspx",
-        "https://timesheet/Employee/AccountEmployeeTimeEntryPeriodView.aspx"
+        "https://timesheet/Default.aspx*",
+        "https://timesheet/Employee/AccountEmployeeTimeEntryPeriodView.aspx*"
       ],
       "js": ["jquery.min.js", "start-up.js"],
       "css": ["loading.css"],

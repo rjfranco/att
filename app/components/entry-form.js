@@ -36,6 +36,14 @@ export default Ember.Component.extend({
 
         this.addActivity(new_activity);
       }.bind(this));
+    },
+
+    goToPreviousWeek: function() {
+      $('#C_C_H1_C_W_ImageButton1').trigger('click');
+    },
+
+    goToNextWeek: function() {
+      $('#C_C_H1_C_W_ImageButton2').trigger('click');
     }
   },
 

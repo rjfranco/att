@@ -1,6 +1,10 @@
 <header>
   <h1>CrowdCompass Timesheets</h1>
-  <h2>{{currentDateRange}}</h2>
+  <h2>
+    <span class="nav-button left" {{action "goToPreviousWeek"}}>Previous Week</span>
+    {{currentDateRange}}
+    <span class="nav-button right" {{action "goToNextWeek"}}>Next Week</span>
+  </h2>
 </header>
 
 <form class="entry" {{action "addNewActivity" on="submit"}}>

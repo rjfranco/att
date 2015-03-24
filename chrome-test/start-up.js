@@ -38,7 +38,7 @@ function startEmberApp (component, $body) {
     $body.addClass('att');
 
     // Add timesheet entry component
-    var timesheet_entry = /Employee\/AccountEmployeeTimeEntryPeriodView.aspx$/;
+    var timesheet_entry = /Employee\/AccountEmployeeTimeEntryPeriodView.aspx/;
     if (timesheet_entry.test(window.location.href)) {
       startEmberApp('entry-form', $body);
 
