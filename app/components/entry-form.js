@@ -54,6 +54,9 @@ export default Ember.Component.extend( Ember.TargetActionSupport, {
   willInsertElement: function() {
     this.defaultToWeekPrior();
     this.restorePreviousTimesheets();
+    if (!this.get('canSubmit')) {
+      this.restoreActiveTimesheet();
+    }
   },
 
   didInsertElement: function() {
@@ -78,6 +81,16 @@ export default Ember.Component.extend( Ember.TargetActionSupport, {
     } else {
       this.set('timesheets', []);
     }
+  },
+
+  restoreActiveTimesheet: function() {
+    console.log('Trying to restore something...');
+    var $time_entry_elements = $('[id^=C_C_H1_C_W_G_TT]').filter( function(index, item) {
+      var $el = $(item);
+      return !!$el.val();
+    });
+
+    console.log('Elements with content', $time_entry_elements);
   },
 
   applySelect2: function() {
