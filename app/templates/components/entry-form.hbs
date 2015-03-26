@@ -7,35 +7,35 @@
   </h2>
 </header>
 
-{{#if canSubmit}}
-<form class="entry" {{action "addNewActivity" on="submit"}}>
-  <input type="text" name="time" placeholder="H:MM" />
+{{#unless submitted}}
+  <form class="entry" {{action "addNewActivity" on="submit"}}>
+    <input type="text" name="time" placeholder="H:MM" />
 
-  <select name="day">
-    <option></option>
-    <option value="Monday">Monday</option>
-    <option value="Tuesday">Tuesday</option>
-    <option value="Wednesday">Wednesday</option>
-    <option value="Thursday">Thursday</option>
-    <option value="Friday">Friday</option>
-    <option value="Saturday">Saturday</option>
-    <option value="Sunday">Sunday</option>
-  </select>
+    <select name="day">
+      <option></option>
+      <option value="Monday">Monday</option>
+      <option value="Tuesday">Tuesday</option>
+      <option value="Wednesday">Wednesday</option>
+      <option value="Thursday">Thursday</option>
+      <option value="Friday">Friday</option>
+      <option value="Saturday">Saturday</option>
+      <option value="Sunday">Sunday</option>
+    </select>
 
-  <select name="type">
-    <option></option>
-    {{#each group in availableOptions}}
-      <optgroup {{bind-attr label="group.label"}}>
-        {{#each option in group.options}}
-          <option {{bind-attr value="option.value"}}>{{option.name}}</option>
-        {{/each}}
-      </optgroup>
-    {{/each}}
-  </select>
+    <select name="type">
+      <option></option>
+      {{#each group in availableOptions}}
+        <optgroup {{bind-attr label="group.label"}}>
+          {{#each option in group.options}}
+            <option {{bind-attr value="option.value"}}>{{option.name}}</option>
+          {{/each}}
+        </optgroup>
+      {{/each}}
+    </select>
 
-  <button type="submit">Add</button>
-</form>
-{{/if}}
+    <button type="submit">Add</button>
+  </form>
+{{/unless}}
 
 {{! Friends don't let friends skip leg days. }}
 <div class="lower-body">

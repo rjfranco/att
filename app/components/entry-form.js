@@ -54,7 +54,7 @@ export default Ember.Component.extend( Ember.TargetActionSupport, {
   willInsertElement: function() {
     this.defaultToWeekPrior();
     this.restorePreviousTimesheets();
-    if (!this.get('canSubmit')) {
+    if (this.get('submitted')) {
       this.restoreActiveTimesheet();
     }
   },
